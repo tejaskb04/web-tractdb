@@ -10,9 +10,7 @@ app.controller("registerController",
             $scope.viewModel = {};
             $scope.submitRegisterForm = function() {
                 console.log("register submit called");
-                window.alert(this.viewModel.account);
-                window.alert(this.viewModel.password);
-                var url = "http://localhost:4000/register";// get this from BASEURL_PYRAMID
+                var url = "http://localhost:8080/register";// TODO: get this from BASEURL_PYRAMID
                 $http({
                     method: "POST",
                     url: url,
@@ -21,13 +19,14 @@ app.controller("registerController",
                 })
                 .then(
                     function (response) {
-                        console.log("success response: " + response);
-                        window.alert("success response: " + response);
+                        console.log("register success response: " + response);
+                        // TODO: on successful response, redirect user to dashboard
                     },
 
                     function (response) {
-                        console.log("error response: " + response);
-                        window.alert("error response: " + response);
+                        console.log("register error response: " + response);
+                        // TODO: on error response, popup error message and keep user on the same page
+                        window.alert("Registration failed, please try again.");
                     }
                 );
             };

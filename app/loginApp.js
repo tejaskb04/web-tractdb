@@ -10,8 +10,26 @@ app.controller("loginController",
             $scope.viewModel = {};
             $scope.submitLoginForm = function() {
                 console.log("login submit called");
-                window.alert(this.viewModel.account);
-                window.alert(this.viewModel.password);
+                
+                var url = "http://localhost:8080/login";// TODO: get this from BASEURL_PYRAMID
+                $http({
+                    method: "POST",
+                    url: url,
+                    data: $scope.viewModel,  // pass in data as JSON
+                    headers: {"Content-Type": "application/json"}
+                })
+                .then(
+                    function (response) {
+                        console.log("login success response: " + response);
+                        // TODO: on successful response, redirect user to dashboard
+                    },
+
+                    function (response) {
+                        console.log("login error response: " + response);
+                        // TODO: on error response, popup error message and keep user on the same page
+                        window.alert("Invalid username or password.");
+                    }
+                );
             }
         }
     ]
