@@ -5,21 +5,19 @@ title_bar: "Forgot Password?"
 title_secondary: "Type your Email and Click Submit"
 
 angular_includes:
-  - "{{ site.baseurl }}/app/serverConfigApp.js"
-  - "{{ site.baseurl }}/app/controllers/controllers.js"
-  - "{{ site.baseurl }}/app/controllers/forgotPasswordController.js"
+  - "{{ site.baseurl }}/app/forgotPasswordApp.js"
 ---
-<div ng-app="serverConfigApp" ng-controller = "forgotPasswordController">
+<div ng-app="forgotPasswordApp" ng-controller = "forgotPasswordController">
     <div class = "container">
         <div class="wrapper">
-		        <form action="" method="post" name="forgotPasswordForm" class="form-signin">       
-			        <input type="text" class="form-control" name="Email" placeholder="Email" autofocus="" /><br/>  
-                    <button class="btn btn-small btn-primary" name="forgotPassword" value="forgotPassword" type="Submit">Submit</button><br/><br/>
+		        <form ng-submit="submitForgotPasswordForm()" id="forgotPasswordForm" name="forgotPasswordForm" class="form-signin">       
+			        <input type="email" class="form-control" name="account" placeholder="Email" autofocus="" required="" pattern=".{5,}" oninvalid="this.setCustomValidity('You need to type a valid email address in the format a@b.c')" onchange = "this.setCustomValidity('')" maxlength="100" ng-model="viewModel.account" /><br/>
+                    <button class="btn btn-small btn-primary" name="forgotPassword" value="forgotPassword" type="submit">Submit</button><br/><br/>
                     <p><a href = "/login">If you're already signed up, login now!</a></p>
 		        </form>	
 	    </div>
 	</div>
-	<style> 
+	<style>    
 	    .wrapper {    
                 margin-top: 20px;
                 margin-bottom: 20px;

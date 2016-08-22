@@ -1,11 +1,18 @@
-var app = angular.module('loginApp', ['tractdb.config']);
+/**
+ * Created by Tejas on 8/7/2016.
+ */
+var app = angular.module("loginApp", []);
 
-app.controller(
-    'loginController',
+app.controller("loginController",
     [
-        '$scope', '$http', 'BASEURL_PYRAMID',
-        function($scope, $http, BASEURL_PYRAMID) {
-            $scope.formData = {};
+        "$scope", "$http", "$window",
+        function($scope, $http, $window) {
+            $scope.viewModel = {};
+            $scope.submitLoginForm = function() {
+                console.log("login submit called");
+                window.alert(this.viewModel.account);
+                window.alert(this.viewModel.password);
+            }
         }
     ]
 );
