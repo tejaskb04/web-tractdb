@@ -14,7 +14,7 @@ angular_includes:
 		        <form ng-submit="submitLoginForm()" id="loginForm" name="loginForm" class="form-signin">       
 		            <h3 class="form-signin-heading">Please Sign In</h3>
 			        <hr class="colorgraph"><br>
-			        <input type="email" class="form-control" name="account" placeholder="Email" autofocus="" required="" pattern=".{5,}" oninvalid="this.setCustomValidity('You need to type a valid email address in the format a@b.c');" onchange = "this.setCustomValidity('');" maxlength="100" ng-model="viewModel.account" /><br/>
+			        <input type="email" class="form-control" name="account" placeholder="Email" autofocus="" required="" pattern=".{5,}" oninvalid="this.setCustomValidity('You need to type a valid email address in the format a@b.c')" onchange = "this.setCustomValidity('')" maxlength="100" ng-model="viewModel.account" /><br/>
 			        <input type="password" class="form-control" name="password" placeholder="Password" required="" maxlength="24" ng-model="viewModel.password" /><br/>  
                     <button class="btn btn-small" name="Cancel" value="Cancel">Cancel</button> 
                     <button class="btn btn-small btn-primary" name="Login" value="Login" type="submit">Login</button><br/><br/>

@@ -5,23 +5,21 @@ title_bar: "Register"
 title_secondary: "Enter Information Below"
 
 angular_includes:
-  - "{{ site.baseurl }}/app/serverConfigApp.js"
-  - "{{ site.baseurl }}/app/controllers/controllers.js"
-  - "{{ site.baseurl }}/app/controllers/registerController.js"
+  - "{{ site.baseurl }}/app/registerApp.js"
 ---
 
-<div ng-app="serverConfigApp" ng-controller = "registerController">
+<div ng-app="registerApp" ng-controller = "registerController">
     <div class = "container">
         <div class="wrapper">
-		        <form action="" method="post" name="registerForm" class="form-signin">       
+		        <form ng-submit="submitRegisterForm()" id="registerForm" name="registerForm" class="form-signin">       
 		            <h3 class="form-signin-heading">Please Register</h3>
 			        <hr class="colorgraph"><br>
-			        <input type="text" class="form-control" name="Email" placeholder="Email" autofocus="" /><br/>
-			        <input type="password" class="form-control" name="Password" placeholder="Password"/><br/> 
-			        <input type="passsword" class="form-control" name="confirmPassword" placeholder="Confirm Password"/><br/>
+			        <input type="email" class="form-control" name="account" placeholder="Email" autofocus="" required="" pattern=".{5,}" oninvalid="this.setCustomValidity('You need to type a valid email address in the format a@b.c')" onchange = "this.setCustomValidity('')" maxlength="100" ng-model="viewModel.account" /><br/>
+			        <input type="password" class="form-control" name="password" placeholder="Password" required="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" oninvalid="this.setCustomValidity('Your password must contain at least one uppercase, one lowercase, and one number or special character, and must be between 8 and 24 characters in length.')" onchange="this.setCustomValidity('')" maxlength="24" ng-model="viewModel.password" /><br/>  
+                    <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password" required="" onchange="if ($('input[name=password]').val() !== $(this).val()) this.setCustomValidity('Password and Confirm Password do not match.'); else this.setCustomValidity('');" maxlength="24" ng-model="viewModel.confirmPassword" /><br/>  
                     <p class = "tac">By clicking on "Register", I agree to the <a href = "/tac">Terms and Conditions</a></p>
                     <button class="btn btn-small" name="Cancel" value="Cancel">Cancel</button> 
-                    <button class="btn btn-small btn-primary" name="Register" value="Register" type="Submit">Register</button><br/><br/>
+                    <button class="btn btn-small btn-primary" name="Register" value="Register" type="submit">Register</button><br/><br/>
                     <p><a href = "/login">If you're already signed up, login now!</a></p>
 		        </form>	
 	    </div>
